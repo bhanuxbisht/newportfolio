@@ -2,126 +2,63 @@
 
 import { motion } from "framer-motion";
 import { PORTFOLIO_DATA } from "@/data/portfolio";
-import { Github, ExternalLink, ArrowUpRight } from "lucide-react";
-import Image from "next/image";
+import { ArrowUpRight, ChevronRight } from "lucide-react";
 
 export default function Projects() {
     const { projects } = PORTFOLIO_DATA;
 
     return (
-        <section id="projects" className="py-10">
+        <section id="projects" className="py-12 md:py-16">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
             >
                 <h2
-                    className="text-3xl md:text-4xl text-white mb-8"
-                    style={{ fontFamily: "var(--font-instrument)" }}
+                    className="text-2xl md:text-3xl font-normal mb-8"
+                    style={{ fontFamily: "var(--font-instrument)", color: "var(--fg)" }}
                 >
                     Projects #
                 </h2>
 
-                <div className="space-y-8">
+                <div className="space-y-1">
                     {projects.map((project, index) => (
-                        <motion.div
+                        <motion.a
                             key={project.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            href={project.liveUrl || project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            initial={{ opacity: 0, x: -10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            className="group border border-neutral-800 rounded-lg p-5 md:p-6 hover:border-neutral-600 transition-all duration-300"
+                            transition={{ delay: index * 0.08, duration: 0.4 }}
+                            className="group flex items-center justify-between py-4 px-2 -mx-2 rounded-md transition-all duration-200 cursor-pointer"
+                            style={{ color: "var(--fg)" }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.backgroundColor = "var(--card-hover)";
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.backgroundColor = "transparent";
+                            }}
                         >
-                            <div className="flex flex-col md:flex-row gap-5">
-                                {/* Thumbnail */}
-                                {project.thumbnail && (
-                                    <div className="w-full md:w-48 h-32 md:h-28 rounded-md overflow-hidden flex-shrink-0 bg-neutral-900">
-                                        <Image
-                                            src={project.thumbnail}
-                                            alt={project.title}
-                                            width={192}
-                                            height={112}
-                                            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
-                                        />
-                                    </div>
-                                )}
-
-                                <div className="flex-1">
-                                    {/* Title Row */}
-                                    <div className="flex items-start justify-between gap-3 mb-2">
-                                        <h3 className="text-lg md:text-xl text-white font-medium group-hover:text-yellow-200 transition-colors">
-                                            {project.title}
-                                        </h3>
-                                        <div className="flex items-center gap-2 flex-shrink-0">
-                                            <span
-                                                className="text-xs text-neutral-500"
-                                                style={{ fontFamily: "var(--font-geist)" }}
-                                            >
-                                                {project.date}
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    {/* Description */}
-                                    <p
-                                        className="text-sm text-neutral-500 leading-relaxed mb-3 line-clamp-2"
-                                        style={{ fontFamily: "var(--font-roboto)" }}
-                                    >
-                                        {project.description}
-                                    </p>
-
-                                    {/* Tech Stack */}
-                                    <div className="flex flex-wrap gap-1.5 mb-3">
-                                        {project.techStack.slice(0, 6).map((tech) => (
-                                            <span
-                                                key={tech}
-                                                className="text-xs px-2 py-0.5 text-neutral-500 border border-neutral-800 rounded"
-                                                style={{ fontFamily: "var(--font-geist)" }}
-                                            >
-                                                {tech}
-                                            </span>
-                                        ))}
-                                        {project.techStack.length > 6 && (
-                                            <span
-                                                className="text-xs px-2 py-0.5 text-neutral-600"
-                                                style={{ fontFamily: "var(--font-geist)" }}
-                                            >
-                                                +{project.techStack.length - 6} more
-                                            </span>
-                                        )}
-                                    </div>
-
-                                    {/* Links */}
-                                    <div className="flex items-center gap-4">
-                                        {project.githubUrl && (
-                                            <a
-                                                href={project.githubUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="flex items-center gap-1.5 text-xs text-neutral-500 hover:text-white transition-colors"
-                                                style={{ fontFamily: "var(--font-geist)" }}
-                                            >
-                                                <Github className="w-3.5 h-3.5" />
-                                                Source
-                                            </a>
-                                        )}
-                                        {project.liveUrl && (
-                                            <a
-                                                href={project.liveUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="flex items-center gap-1.5 text-xs text-neutral-500 hover:text-white transition-colors"
-                                                style={{ fontFamily: "var(--font-geist)" }}
-                                            >
-                                                <ArrowUpRight className="w-3.5 h-3.5" />
-                                                Live
-                                            </a>
-                                        )}
-                                    </div>
-                                </div>
+                            <div className="flex items-center gap-3">
+                                <ChevronRight
+                                    className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+                                    style={{ color: "var(--fg-muted)" }}
+                                />
+                                <span
+                                    className="text-base font-normal"
+                                    style={{ fontFamily: "var(--font-geist)" }}
+                                >
+                                    {project.title}
+                                </span>
                             </div>
-                        </motion.div>
+                            <ArrowUpRight
+                                className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                                style={{ color: "var(--fg-muted)" }}
+                            />
+                        </motion.a>
                     ))}
                 </div>
             </motion.div>

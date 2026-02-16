@@ -11,17 +11,17 @@ export default function Home() {
   return (
     <main className="mx-auto max-w-3xl px-6 md:px-4">
       <Hero />
-      <hr className="border-neutral-800" />
+      <hr className="border-neutral-900 my-4" />
       <About />
-      <hr className="border-neutral-800" />
+      <hr className="border-neutral-900 my-4" />
       <Skills />
-      <hr className="border-neutral-800" />
+      <hr className="border-neutral-900 my-4" />
       <Projects />
-      <hr className="border-neutral-800" />
+      <hr className="border-neutral-900 my-4" />
       <Education />
-      <hr className="border-neutral-800" />
+      <hr className="border-neutral-900 my-4" />
       <Experience />
-      <hr className="border-neutral-800" />
+      <hr className="border-neutral-900 my-4" />
       <Contact />
       <Footer />
     </main>

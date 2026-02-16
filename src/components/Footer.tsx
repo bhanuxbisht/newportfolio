@@ -8,27 +8,23 @@ export default function Footer() {
 
     const getIcon = (platform: string) => {
         switch (platform) {
-            case "GitHub":
-                return <Github className="w-4 h-4" />;
-            case "LinkedIn":
-                return <Linkedin className="w-4 h-4" />;
-            case "LeetCode":
-                return <Code2 className="w-4 h-4" />;
-            default:
-                return null;
+            case "GitHub": return <Github className="w-4 h-4" />;
+            case "LinkedIn": return <Linkedin className="w-4 h-4" />;
+            case "LeetCode": return <Code2 className="w-4 h-4" />;
+            default: return null;
         }
     };
 
     return (
-        <footer className="py-12 border-t border-neutral-800">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+        <footer className="py-10 mt-4" style={{ borderTop: "1px solid var(--border)" }}>
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                 <p
-                    className="text-xs text-neutral-600"
-                    style={{ fontFamily: "var(--font-geist)" }}
+                    className="text-xs"
+                    style={{ fontFamily: "var(--font-geist)", color: "var(--fg-muted)" }}
                 >
                     Developed by{" "}
-                    <span className="text-neutral-400">{personal.name}</span> •{" "}
-                    © {new Date().getFullYear()}
+                    <span style={{ color: "var(--fg-secondary)" }}>{personal.name}</span>{" "}
+                    · © {new Date().getFullYear()}
                 </p>
 
                 <div className="flex items-center gap-4">
@@ -39,7 +35,10 @@ export default function Footer() {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label={social.platform}
-                            className="text-neutral-600 hover:text-white transition-colors hover:scale-110 transform"
+                            className="transition-all duration-200 hover:scale-110"
+                            style={{ color: "var(--fg-muted)" }}
+                            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--fg)")}
+                            onMouseLeave={(e) => (e.currentTarget.style.color = "var(--fg-muted)")}
                         >
                             {getIcon(social.platform)}
                         </a>

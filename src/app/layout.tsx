@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Instrument_Serif, Roboto_Flex, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@/context/ThemeContext";
+import Navbar from "@/components/Navbar";
 
 const instrumentSerif = Instrument_Serif({
   weight: "400",
@@ -50,17 +52,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" data-theme="dark" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen bg-black text-white antialiased",
+          "min-h-screen antialiased",
           instrumentSerif.variable,
           robotoFlex.variable,
           geistMono.variable
         )}
-        style={{ fontFamily: "var(--font-roboto), sans-serif" }}
       >
-        {children}
+        <ThemeProvider>
+          <Navbar />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
