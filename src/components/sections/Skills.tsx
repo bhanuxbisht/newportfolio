@@ -108,7 +108,7 @@ export default function Skills() {
                                         whileInView={{ opacity: 1, scale: 1 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: catIndex * 0.04 + i * 0.02, duration: 0.3 }}
-                                        className="inline-flex items-center gap-2 px-3 py-1.5 text-sm rounded-md border border-dashed transition-all duration-200 cursor-default hover:scale-[1.04]"
+                                        className="inline-flex items-center gap-2 px-3 py-1.5 text-sm rounded-md border border-dashed transition-all duration-200 cursor-pointer hover:scale-[1.04]"
                                         style={{
                                             fontFamily: "var(--font-geist)",
                                             color: "var(--fg-secondary)",
