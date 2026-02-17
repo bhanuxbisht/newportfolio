@@ -27,7 +27,7 @@ export default function Hero() {
     };
 
     return (
-        <section className="pt-28 pb-12 md:pt-36 md:pb-16">
+        <section className="pt-12 pb-12 md:pt-16 md:pb-16 px-6 md:px-8">
             {/* Profile Image + Name Row */}
             <motion.div
                 custom={0}

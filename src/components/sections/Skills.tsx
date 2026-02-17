@@ -68,7 +68,7 @@ export default function Skills() {
     const { skills } = PORTFOLIO_DATA;
 
     return (
-        <section id="skills" className="py-12 md:py-16">
+        <section id="skills" className="py-12 md:py-16 px-6 md:px-8">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}

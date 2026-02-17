@@ -8,7 +8,7 @@ export default function Contact() {
     const { personal } = PORTFOLIO_DATA;
 
     return (
-        <section id="contact" className="py-12 md:py-16">
+        <section id="contact" className="py-12 md:py-16 px-6 md:px-8">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}

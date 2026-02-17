@@ -45,7 +45,7 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
-                className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+                className="sticky top-0 w-full z-50 transition-all duration-300"
                 style={{
                     backgroundColor: navBg,
                     backdropFilter: isScrolled ? "blur(24px) saturate(180%)" : "blur(16px) saturate(150%)",
@@ -53,7 +53,7 @@ export default function Navbar() {
                     borderBottom: isScrolled ? `1px solid ${borderColor}` : "1px solid transparent",
                 }}
             >
-                <div className="max-w-3xl mx-auto px-6 md:px-4 py-4 flex items-center justify-between">
+                <div className="w-full px-6 md:px-8 py-4 flex items-center justify-between">
                     {/* Left: Nav Links */}
                     <div className="flex items-center gap-8" style={{ fontFamily: "var(--font-geist)" }}>
                         {navItems.map((item) => (

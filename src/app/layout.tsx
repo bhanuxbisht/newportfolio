@@ -55,15 +55,19 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth" data-theme="dark" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen antialiased",
+          "min-h-screen antialiased bg-[var(--bg)] text-[var(--fg)]",
           instrumentSerif.variable,
           robotoFlex.variable,
           geistMono.variable
         )}
       >
         <ThemeProvider>
-          <Navbar />
-          {children}
+          <div className="max-w-5xl mx-auto min-h-screen border-x border-[var(--border)] bg-[var(--bg)] shadow-2xl shadow-black/5">
+            <Navbar />
+            <main className="relative">
+              {children}
+            </main>
+          </div>
         </ThemeProvider>
       </body>
     </html>
