@@ -14,29 +14,30 @@ const ThemeContext = createContext<ThemeContextType>({
     toggleTheme: () => { },
 });
 
+function isTheme(value: string | null): value is Theme {
+    return value === "dark" || value === "light";
+}
+
+function getInitialTheme(): Theme {
+    if (typeof window === "undefined") {
+        return "dark";
+    }
+
+    const saved = localStorage.getItem("theme");
+    return isTheme(saved) ? saved : "dark";
+}
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
-    const [theme, setTheme] = useState<Theme>("dark");
-    const [mounted, setMounted] = useState(false);
+    const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
     useEffect(() => {
-        setMounted(true);
-        const saved = localStorage.getItem("theme") as Theme;
-        if (saved) {
-            setTheme(saved);
-            document.documentElement.setAttribute("data-theme", saved);
-        }
-    }, []);
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+    }, [theme]);
 
     const toggleTheme = () => {
-        const next = theme === "dark" ? "light" : "dark";
-        setTheme(next);
-        localStorage.setItem("theme", next);
-        document.documentElement.setAttribute("data-theme", next);
+        setTheme((current) => (current === "dark" ? "light" : "dark"));
     };
-
-    if (!mounted) {
-        return <div style={{ visibility: "hidden" }}>{children}</div>;
-    }
 
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme }}>
