@@ -1,10 +1,16 @@
 export const PORTFOLIO_DATA = {
     personal: {
         name: "Yogendra Bisht",
-        role: "Full-Stack Engineer",
-        age: "20",
+        role: "AI Engineer • Full-Stack Architect",
+        highlightRoles: [
+            "Shipping Production-Grade Code",
+            "Building AI That Reads My Handwriting",
+            "Pre-Final Year @ GEHU Dehradun",
+            "Founder — W Code | wcode.in",
+        ],
+        age: "21",
         location: "India",
-        tagline: "A pre-final year undergraduate engineering student at Graphic Era Hill University, Dehradun.",
+        tagline: "Building web products today clean, exploring AI and decentralized tech tomorrow.",
         availability: "Available for new opportunities",
         email: "workforrhody7@gmail.com",
         secondaryEmail: "YOGENDRASINGHBISHT.230112820@gehu.ac.in",
@@ -13,8 +19,8 @@ export const PORTFOLIO_DATA = {
         about:
             "a pre-final year Computer Science undergraduate passionate about technology and constantly curious about how things work beneath the surface. I'm self-motivated with a can-do attitude, thriving in challenging and dynamic environments. I'm actively seeking opportunities where I can enhance my technical and problem-solving skills while contributing meaningfully to a forward-thinking organization.",
         stats: [
-            { label: "Aggregate CGPA", value: "7+" },
-            { label: "Projects Completed", value: "5+" },
+            { label: "Aggregate CGPA", value: "7.0+" },
+            { label: "Students Impacted", value: "500+" },
         ],
     },
 
@@ -52,8 +58,8 @@ export const PORTFOLIO_DATA = {
     ],
 
     skills: {
-        Frontend: ["React/Next.js", "Tailwind CSS"],
-        Backend: ["Node.js", "FastAPI", "REST API", "PostgreSQL", "SQL", "Flask", "API Integration"],
+        Frontend: ["React/Next.js", "Tailwind CSS", "Framer Motion"],
+        Backend: ["Node.js", "FastAPI", "REST API", "PostgreSQL", "SQL", "Flask", "API Integration", "WebSockets"],
         Languages: ["TypeScript", "JavaScript", "Python", "C++", "C", "Java"],
         DevOps: ["Docker", "Git", "GitHub", "CI/CD", "AWS", "Vercel", "AI-Assisted Development"],
         "AI/ML": [
@@ -73,6 +79,17 @@ export const PORTFOLIO_DATA = {
     },
 
     projects: [
+        {
+            id: "0",
+            title: "W Code — DSA & Placement Platform",
+            description:
+                "A full-stack SaaS platform for DSA preparation, AI mock interviews, ATS-ready resumes, and interview-focused learning paths used by 500+ students.",
+            techStack: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Vercel", "AI Integration"],
+            githubUrl: "https://wcode.in",
+            liveUrl: "https://wcode.in",
+            category: "Web",
+            date: "2025",
+        },
         {
             id: "1",
             title: "AI Assignment Checker",

@@ -1,13 +1,30 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { PORTFOLIO_DATA } from "@/data/portfolio";
 import { Github, Linkedin, Code2, Download, Mail, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useMemo, useState } from "react";
 
 export default function Hero() {
     const { personal, socials } = PORTFOLIO_DATA;
     const easeCurve = [0.25, 0.4, 0.25, 1] as const;
+    const primaryRole = personal.role.split("•")[0]?.trim() || personal.role;
+    const roleHighlights = useMemo(
+        () => (personal.highlightRoles?.length ? personal.highlightRoles : [personal.role]),
+        [personal.highlightRoles, personal.role],
+    );
+    const [activeRoleIndex, setActiveRoleIndex] = useState(0);
+
+    useEffect(() => {
+        if (roleHighlights.length <= 1) return;
+
+        const intervalId = window.setInterval(() => {
+            setActiveRoleIndex((prev) => (prev + 1) % roleHighlights.length);
+        }, 2200);
+
+        return () => window.clearInterval(intervalId);
+    }, [roleHighlights]);
 
     const getIcon = (platform: string) => {
         switch (platform) {
@@ -66,7 +83,7 @@ export default function Hero() {
                             className="text-sm ml-1 hidden md:inline"
                             style={{ fontFamily: "var(--font-geist)", color: "var(--fg-muted)" }}
                         >
-                            | {personal.age}, Dehradun IND
+                            | {personal.age}, {personal.location}
                         </span>
                     </div>
 
@@ -75,7 +92,19 @@ export default function Hero() {
                         className="text-sm md:text-base mt-1"
                         style={{ fontFamily: "var(--font-geist)", color: "var(--fg-secondary)" }}
                     >
-                        {personal.role}
+                        <AnimatePresence mode="wait">
+                            <motion.span
+                                key={roleHighlights[activeRoleIndex]}
+                                initial={{ opacity: 0, y: 8 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -8 }}
+                                transition={{ duration: 0.25 }}
+                                className="inline-block px-1.5 py-0.5 rounded-sm"
+                                style={{ backgroundColor: "#2563eb", color: "#ffffff" }}
+                            >
+                                {roleHighlights[activeRoleIndex]}
+                            </motion.span>
+                        </AnimatePresence>
                     </p>
                 </div>
             </motion.div>
@@ -94,9 +123,9 @@ export default function Hero() {
                     className="font-medium underline underline-offset-4"
                     style={{ color: "var(--accent)", textDecorationColor: "var(--accent-soft)" }}
                 >
-                    Full-Stack Engineer
+                    {primaryRole}
                 </span>{" "}
-                Building web products today clean, exploring AI &amp; decentralized tech tomorrow.
+                {personal.tagline}
             </motion.p>
 
             {/* Social Icons Row */}
