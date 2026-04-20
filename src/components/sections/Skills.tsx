@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { PORTFOLIO_DATA } from "@/data/portfolio";
+import Image from "next/image";
 
 /* ── Icon mapping: skill name → devicon slug ── */
 const SKILL_ICONS: Record<string, string> = {
@@ -44,18 +45,23 @@ function SkillIcon({ skill }: { skill: string }) {
     const slug = SKILL_ICONS[skill];
     if (!slug) return null;
 
+    const originalSrc = `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${slug}/${slug}-original.svg`;
+    const fallbackSrc = `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${slug}/${slug}-plain.svg`;
+
     return (
-        <img
-            src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${slug}/${slug}-original.svg`}
-            alt=""
-            className="w-3.5 h-3.5 flex-shrink-0"
+        <Image
+            src={originalSrc}
+            alt={`${skill} icon`}
+            width={14}
+            height={14}
+            className="w-3.5 h-3.5 shrink-0"
             loading="lazy"
-            onError={(e) => {
-                // Fallback: try plain variant
-                const target = e.currentTarget;
-                if (!target.dataset.fallback) {
+            unoptimized
+            onError={(event) => {
+                const target = event.currentTarget;
+                if (target.dataset.fallback !== "1") {
                     target.dataset.fallback = "1";
-                    target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${slug}/${slug}-plain.svg`;
+                    target.src = fallbackSrc;
                 } else {
                     target.style.display = "none";
                 }

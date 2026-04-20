@@ -7,12 +7,13 @@ import Image from "next/image";
 
 export default function Hero() {
     const { personal, socials } = PORTFOLIO_DATA;
+    const easeCurve = [0.25, 0.4, 0.25, 1] as const;
 
     const getIcon = (platform: string) => {
         switch (platform) {
-            case "GitHub": return <Github className="w-[18px] h-[18px]" />;
-            case "LinkedIn": return <Linkedin className="w-[18px] h-[18px]" />;
-            case "LeetCode": return <Code2 className="w-[18px] h-[18px]" />;
+            case "GitHub": return <Github className="w-4.5 h-4.5" />;
+            case "LinkedIn": return <Linkedin className="w-4.5 h-4.5" />;
+            case "LeetCode": return <Code2 className="w-4.5 h-4.5" />;
             default: return null;
         }
     };
@@ -22,7 +23,7 @@ export default function Hero() {
         visible: (i: number) => ({
             opacity: 1,
             y: 0,
-            transition: { duration: 0.5, delay: i * 0.12, ease: [0.25, 0.4, 0.25, 1] },
+            transition: { duration: 0.5, delay: i * 0.12, ease: easeCurve },
         }),
     };
 
@@ -38,7 +39,7 @@ export default function Hero() {
             >
                 {/* Rounded profile image */}
                 <div
-                    className="w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden flex-shrink-0"
+                    className="w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden shrink-0"
                     style={{ border: "2px solid var(--border)" }}
                 >
                     <Image
@@ -60,7 +61,7 @@ export default function Hero() {
                         >
                             {personal.name}
                         </h1>
-                        <CheckCircle2 className="w-5 h-5 text-blue-500 flex-shrink-0" />
+                        <CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0" />
                         <span
                             className="text-sm ml-1 hidden md:inline"
                             style={{ fontFamily: "var(--font-geist)", color: "var(--fg-muted)" }}
@@ -116,7 +117,7 @@ export default function Hero() {
                         onMouseLeave={(e) => (e.currentTarget.style.color = "var(--fg-secondary)")}
                         aria-label="Download Resume"
                     >
-                        <Download className="w-[18px] h-[18px]" />
+                        <Download className="w-4.5 h-4.5" />
                     </a>
                 )}
 
@@ -144,7 +145,7 @@ export default function Hero() {
                     onMouseLeave={(e) => (e.currentTarget.style.color = "var(--fg-secondary)")}
                     aria-label="Email"
                 >
-                    <Mail className="w-[18px] h-[18px]" />
+                    <Mail className="w-4.5 h-4.5" />
                 </a>
             </motion.div>
         </section>
